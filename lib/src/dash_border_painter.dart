@@ -30,14 +30,14 @@ class DashBorderPainter extends CustomPainter {
       ..lineTo(0, size.height)
       ..close();
 
-    double _dashWidth = dashWidth;
-    double _dashSpace = dashSpace;
-    double distance = animationValue * (_dashWidth + _dashSpace);
+    double dashWidthLocal = dashWidth;
+    double dashSpaceLocal = dashSpace;
+    double distance = animationValue * (dashWidthLocal + dashSpaceLocal);
 
     for (final pathMetric in path.computeMetrics()) {
       double pathLength = pathMetric.length;
       while (distance < pathLength) {
-        final double nextDashEnd = distance + _dashWidth;
+        final double nextDashEnd = distance + dashWidthLocal;
         if (nextDashEnd > pathLength) {
           break;
         }
@@ -48,7 +48,7 @@ class DashBorderPainter extends CustomPainter {
           ),
           paint,
         );
-        distance += _dashWidth + _dashSpace;
+        distance += dashWidthLocal + dashSpaceLocal;
       }
       distance -= pathLength;
     }
