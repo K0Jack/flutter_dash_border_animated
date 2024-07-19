@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dash_border_animated/src/dash_border_run_type.dart';
 
 import 'dash_border_painter.dart';
 
@@ -10,8 +11,9 @@ class DashBorderAnimated extends StatefulWidget {
     this.strokeWidth = 5,
     this.dashWidth = 10,
     this.dashSpace = 5,
-    required this.height,
-    required this.width,
+    this.child,
+    this.dashRunType = DashBorderRunType.rectangle,
+    this.isPause = false,
   });
 
   /// Height of dash, if you want it be bigger than default value just add value you want
@@ -23,17 +25,20 @@ class DashBorderAnimated extends StatefulWidget {
   /// Space of dash to dash, if you want it be bigger than default value just add value you want
   final double dashSpace;
 
-  /// Width of item inside border
-  final double width;
-
-  /// Height of item inside border
-  final double height;
+  /// Pause animated, default it's always true
+  final bool isPause;
 
   /// Border Color
   final Color dashColor;
 
   /// The speed of dash, it will run around
   final Duration? animatedSpeed;
+
+  /// Type of Dash, dash gets animated with type from [DashBorderRunType]. Normal case is [DashBorderRunType.rectangle]
+  final DashBorderRunType dashRunType;
+
+  /// Child item when you want do something inside
+  final Widget? child;
 
   @override
   _DashBorderAnimatedState createState() => _DashBorderAnimatedState();
@@ -63,6 +68,19 @@ class _DashBorderAnimatedState extends State<DashBorderAnimated>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isPause) {
+      return CustomPaint(
+        painter: DashBorderPainter(
+          animationValue: _animation.value,
+          dashColor: widget.dashColor,
+          dashWidth: widget.dashWidth,
+          dashSpace: widget.dashSpace,
+          strokeWidth: widget.strokeWidth,
+          dashRunType: widget.dashRunType,
+        ),
+        child: widget.child,
+      );
+    }
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
@@ -73,11 +91,9 @@ class _DashBorderAnimatedState extends State<DashBorderAnimated>
             dashWidth: widget.dashWidth,
             dashSpace: widget.dashSpace,
             strokeWidth: widget.strokeWidth,
+            dashRunType: widget.dashRunType,
           ),
-          child:  SizedBox(
-            height: widget.height,
-            width: widget.width,
-          ),
+          child: widget.child,
         );
       },
     );

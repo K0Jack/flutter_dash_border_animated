@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dash_border_animated/flutter_dash_border_animated.dart';
+import 'package:flutter_dash_border_animated/src/dash_border_run_type.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Dash Border Animated'),
     );
   }
 }
@@ -44,23 +45,57 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            DashBorderAnimated(
-              dashColor: Colors.red,
-              height: 20,
-              width: 50,
+            SizedBox(
+              height: 50,
+              width: 80,
+              child: DashBorderAnimated(
+                dashColor: Colors.red,
+                child: Center(
+                    child: Text(
+                  'Just Run Rec',
+                  textAlign: TextAlign.center,
+                )),
+              ),
             ),
             SizedBox(height: 20),
-            DashBorderAnimated(
-              dashColor: Colors.yellow,
-              height: 20,
-              width: 50,
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: DashBorderAnimated(
+                dashColor: Colors.blue,
+                child: Center(
+                    child: Text(
+                  'Just Run Square',
+                  textAlign: TextAlign.center,
+                )),
+              ),
             ),
             SizedBox(height: 20),
-            DashBorderAnimated(
-              dashColor: Colors.green,
-              height: 20,
-              width: 50,
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: DashBorderAnimated(
+                dashColor: Colors.yellow,
+                dashRunType: DashBorderRunType.rectanglePip,
+                child: Center(
+                  child: Text(
+                    'Rounded Run',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
             ),
+            SizedBox(height: 20),
+            SizedBox(
+              height: 80,
+              width: 80,
+              child: DashBorderAnimated(
+                dashColor: Colors.green,
+                dashRunType: DashBorderRunType.circle,
+                child: Center(child: Text('Circle')),
+              ),
+            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
