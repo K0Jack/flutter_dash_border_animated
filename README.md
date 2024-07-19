@@ -1,7 +1,7 @@
 ## flutter_dash_border_animated
 
 ### Normal use
-<img src="https://github.com/K0Jack/flutter_dash_border_animated/blob/main/Screen%20Recording%202024-07-19%20at%2021.52.12.gif" width=400>
+<img src="https://github.com/K0Jack/flutter_dash_border_animated/blob/main/image_dash_border_animated.gif", with=400>
 
 ### Example
 ```dart

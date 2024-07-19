@@ -1,3 +1,6 @@
+## 0.0.4
+* Update change log
+
 ## 0.0.3
 * Fix private key
 
