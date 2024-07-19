@@ -1,10 +1,10 @@
-# flutter_dash_border_animated
+## flutter_dash_border_animated
 
-# Normal use
-![Show Case use](https://github.com/K0Jack/flutter_dash_border_animated/blob/main/Screen%20Recording%202024-07-19%20at%2021.52.12.gif)
+### Normal use
+<img src="https://github.com/K0Jack/flutter_dash_border_animated/blob/main/Screen%20Recording%202024-07-19%20at%2021.52.12.gif" width=400>
 
-# Example
-```
+### Example
+```dart
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

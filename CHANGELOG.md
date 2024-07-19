@@ -1,3 +1,6 @@
+## 0.0.3
+* Fix private key
+
 ## 0.0.2
 * Fix bug: DashBorder not run
 * Add more dash type

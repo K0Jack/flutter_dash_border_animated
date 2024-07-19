@@ -41,10 +41,10 @@ class DashBorderAnimated extends StatefulWidget {
   final Widget? child;
 
   @override
-  _DashBorderAnimatedState createState() => _DashBorderAnimatedState();
+  DashBorderAnimatedState createState() => DashBorderAnimatedState();
 }
 
-class _DashBorderAnimatedState extends State<DashBorderAnimated>
+class DashBorderAnimatedState extends State<DashBorderAnimated>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

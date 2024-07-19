@@ -1,7 +1,7 @@
 name: flutter_dash_border_animated
-description: "Provides a little package rendering library for all application development by flutter team"
-version: 0.0.2
-authors: ["Linh Nguyen (KoJack Nguyen)<linhhn190998@gmail.com>"]
+description: "Provides a little package rendering library for all application development by flutter team, 
+Author: Linh Nguyen (KoJack Nguyen)<linhhn190998@gmail.com> "
+version: 0.0.3
 
 homepage: https://github.com/K0Jack/flutter_dash_border_animated.git
 
