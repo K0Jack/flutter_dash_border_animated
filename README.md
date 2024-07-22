@@ -1,9 +1,10 @@
 ## flutter_dash_border_animated
 
 ### Normal use
-<img src="https://github.com/K0Jack/flutter_dash_border_animated/blob/main/image_dash_border_animated.gif", with=400>
+[image_dash_border_animated](https://github.com/user-attachments/assets/72c57a97-92be-4cdf-9af7-a2459a2ffe50)
 
-### Example
+### Example!
+
 ```dart
   Widget build(BuildContext context) {
     return Scaffold(
