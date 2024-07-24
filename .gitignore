@@ -32,3 +32,4 @@ build/
 .idea/flutter_dash_border_animated.iml
 /.idea
 /.idea
+*.iml
