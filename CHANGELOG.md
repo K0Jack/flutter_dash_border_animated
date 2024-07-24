@@ -1,3 +1,6 @@
+## 0.0.5
+* Fix
+
 ## 0.0.4
 * Update change log
 

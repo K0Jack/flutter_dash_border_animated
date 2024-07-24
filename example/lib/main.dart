@@ -59,13 +59,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             SizedBox(
-              height: 80,
-              width: 80,
+              height: 90,
+              width: 90,
               child: DashBorderAnimated(
                 dashColor: Colors.blue,
+                isPause: true,
+                dashRunType: DashBorderRunType.rectangle,
                 child: Center(
                     child: Text(
-                  'Just Run Square',
+                  'Just pause',
                   textAlign: TextAlign.center,
                 )),
               ),

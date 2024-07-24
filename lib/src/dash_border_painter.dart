@@ -11,12 +11,14 @@ class DashBorderPainter extends CustomPainter {
     this.strokeWidth = 5,
     this.dashWidth = 10,
     this.dashSpace = 5,
+    this.borderRadius = 16,
   });
 
   final double animationValue;
   final double strokeWidth;
   final double dashWidth;
   final double dashSpace;
+  final double borderRadius;
 
   final Color dashColor;
 
@@ -35,7 +37,6 @@ class DashBorderPainter extends CustomPainter {
 
     switch (dashRunType) {
       /// Dash Border normal case
-
       case DashBorderRunType.rectangle:
         buildDashRunRectangle(
           paint,
@@ -49,7 +50,7 @@ class DashBorderPainter extends CustomPainter {
 
       /// Dash Border with rounded
       case DashBorderRunType.rectanglePip:
-        buildDashRunRectangleRounded(paint, canvas, size, distance);
+        buildDashRunPipRounded(paint, canvas, size, distance);
 
         break;
 
@@ -57,9 +58,10 @@ class DashBorderPainter extends CustomPainter {
       case DashBorderRunType.circle:
         buildDashRunCircle(paint, canvas, size, distance);
         break;
-      case DashBorderRunType.rectangleRounded:
-        // TODO: Handle this case.
-        break;
+      // case DashBorderRunType.rectangleRounded:
+      //   buildDashRunPipRounded(paint, canvas, size, distance);
+      //
+      //   break;
     }
   }
 
@@ -99,6 +101,50 @@ class DashBorderPainter extends CustomPainter {
   }
 
   void buildDashRunRectangleRounded(
+    Paint paint,
+    Canvas canvas,
+    Size size,
+    double distance,
+    double dashWidthLocal,
+    double dashSpaceLocal,
+  ) {
+    final rrect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      Radius.circular(borderRadius),
+    );
+
+    final path = Path()..addRRect(rrect);
+
+    double totalLength = 0.0;
+    for (PathMetric pathMetric in path.computeMetrics()) {
+      totalLength += pathMetric.length;
+    }
+
+    while (distance > totalLength) {
+      distance -= totalLength;
+    }
+
+    for (PathMetric pathMetric in path.computeMetrics()) {
+      double pathLength = pathMetric.length;
+      while (distance < pathLength) {
+        final double nextDashEnd = distance + dashWidthLocal;
+        if (nextDashEnd > pathLength) {
+          break;
+        }
+        canvas.drawPath(
+          pathMetric.extractPath(
+            distance,
+            nextDashEnd,
+          ),
+          paint,
+        );
+        distance += dashWidthLocal + dashSpaceLocal;
+      }
+      distance -= pathLength;
+    }
+  }
+
+  void buildDashRunPipRounded(
     Paint paint,
     Canvas canvas,
     Size size,
@@ -185,6 +231,9 @@ class DashBorderPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant DashBorderPainter oldDelegate) {
-    return oldDelegate.animationValue != animationValue;
+    return oldDelegate.animationValue != animationValue ||
+        oldDelegate.borderRadius != borderRadius ||
+        oldDelegate.dashSpace != dashSpace ||
+        oldDelegate.dashWidth != dashWidth;
   }
 }

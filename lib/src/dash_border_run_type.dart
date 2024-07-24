@@ -1,6 +1,6 @@
 enum DashBorderRunType {
   rectangle,
   rectanglePip,
-  rectangleRounded,
+  // rectangleRounded,
   circle,
 }

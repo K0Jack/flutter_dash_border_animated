@@ -1,7 +1,6 @@
 name: flutter_dash_border_animated
-description: "Provides a little package rendering library for all application development by flutter team, 
- Author: Linh Nguyen (KoJack Nguyen)<linhhn190998@gmail.com> "
-version: 0.0.4
+description: "A package help you make the dash border animated for widget, Container, Sizedbox,..."
+version: 0.0.5
 
 homepage: https://github.com/K0Jack/flutter_dash_border_animated.git
 

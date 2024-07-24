@@ -11,6 +11,7 @@ class DashBorderAnimated extends StatefulWidget {
     this.strokeWidth = 5,
     this.dashWidth = 10,
     this.dashSpace = 5,
+    this.borderRadius = 16,
     this.child,
     this.dashRunType = DashBorderRunType.rectangle,
     this.isPause = false,
@@ -24,6 +25,8 @@ class DashBorderAnimated extends StatefulWidget {
 
   /// Space of dash to dash, if you want it be bigger than default value just add value you want
   final double dashSpace;
+
+  final double borderRadius;
 
   /// Pause animated, default it's always true
   final bool isPause;
@@ -77,25 +80,29 @@ class DashBorderAnimatedState extends State<DashBorderAnimated>
           dashSpace: widget.dashSpace,
           strokeWidth: widget.strokeWidth,
           dashRunType: widget.dashRunType,
+          borderRadius: widget.borderRadius,
         ),
         child: widget.child,
       );
     }
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return CustomPaint(
-          painter: DashBorderPainter(
-            animationValue: _animation.value,
-            dashColor: widget.dashColor,
-            dashWidth: widget.dashWidth,
-            dashSpace: widget.dashSpace,
-            strokeWidth: widget.strokeWidth,
-            dashRunType: widget.dashRunType,
-          ),
-          child: widget.child,
-        );
-      },
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) {
+          return CustomPaint(
+            painter: DashBorderPainter(
+              animationValue: _animation.value,
+              dashColor: widget.dashColor,
+              dashWidth: widget.dashWidth,
+              dashSpace: widget.dashSpace,
+              strokeWidth: widget.strokeWidth,
+              dashRunType: widget.dashRunType,
+              borderRadius: widget.borderRadius,
+            ),
+            child: widget.child,
+          );
+        },
+      ),
     );
   }
 }
